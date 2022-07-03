@@ -16,7 +16,7 @@ export class Cache<Type> {
 
       if (!bucket) {
 
-        bucket = new CacheBucket(bucketName);
+        bucket = new CacheBucket<Type>(bucketName);
 
         this.cacheBuckets.set(bucketName, bucket);
 
