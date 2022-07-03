@@ -195,5 +195,3 @@ export class TCData extends Response {
   }
 
 }
-
-CmpApiModel.restrictionsCache.addBucket(TCData.name);

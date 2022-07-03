@@ -13,9 +13,11 @@ export class CacheBucket<Type> {
 
       this.recalculations = 0;
 
+      this.cache = new Map<string, Type>();
+
     }
 
-    get(key: string, recalculation: Function, ...args): Type {
+    public get(key: string, recalculation: Function, ...args): Type {
 
       let value = this.cache.get(key);
 
@@ -34,10 +36,16 @@ export class CacheBucket<Type> {
 
     }
 
-    clear(): void {
+    public clear(): void {
 
       this.cache.clear();
       this.recalculations = 0;
+
+    }
+
+    public size(): number {
+
+      return this.cache.size;
 
     }
 

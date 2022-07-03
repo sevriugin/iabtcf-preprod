@@ -1,7 +1,6 @@
 import {IdBoolTuple, PurposeRestriction, PurposeRestrictionVector, RestrictionType, Vector} from '@iabtcf/core';
 import {Restrictions} from './Restrictions';
 import {TCData} from './TCData';
-import {CmpApiModel} from '../CmpApiModel';
 
 interface VendorIdRestrictionType {
   vendorId: number;
@@ -92,5 +91,3 @@ export class InAppTCData extends TCData {
   };
 
 }
-
-CmpApiModel.restrictionsCache.addBucket(InAppTCData.name);

@@ -2,7 +2,7 @@ import {CacheBucket} from './CacheBucket';
 
 export class Cache<Type> {
 
-    public cacheBuckets: Map<string, CacheBucket<Type>>;
+    private cacheBuckets: Map<string, CacheBucket<Type>>;
 
     constructor() {
 
@@ -10,7 +10,7 @@ export class Cache<Type> {
 
     }
 
-    public addBucket(bucketName: string): void {
+    public getBucket(bucketName: string): CacheBucket<Type> {
 
       let bucket = this.cacheBuckets.get(bucketName);
 
@@ -18,19 +18,31 @@ export class Cache<Type> {
 
         bucket = new CacheBucket(bucketName);
 
+        this.cacheBuckets.set(bucketName, bucket);
+
       }
 
-    }
-
-    getBucket(bucketName: string): CacheBucket<Type> {
-
-      return this.cacheBuckets.get(bucketName);
+      return bucket;
 
     }
 
-    clear(): void {
+    public clear(): void {
 
       this.cacheBuckets.forEach((bucket) => bucket.clear());
+
+    }
+
+    public numberOfBuckets(): number {
+
+      return this.cacheBuckets.size;
+
+    }
+
+    public size(): number {
+
+      let total = 0;
+      this.cacheBuckets.forEach((bucket) => total += bucket.size());
+      return total;
 
     }
 
