@@ -2,6 +2,8 @@ import {CmpApiModel} from '../../src/CmpApiModel';
 import {TestUtils} from '../TestUtils';
 import {TCModelFactory, makeRandomIntArray} from '@iabtcf/testing';
 import {TCString} from '@iabtcf/core';
+import {InAppTCData} from '../../src';
+import {expect} from 'chai';
 
 describe('response->InAppTCData', (): void => {
 
@@ -33,7 +35,13 @@ describe('response->InAppTCData', (): void => {
     CmpApiModel.tcModel = TCModelFactory.addPublisherRestrictions(tcModel);
     CmpApiModel.tcString = TCString.encode(CmpApiModel.tcModel);
 
+    CmpApiModel.restrictionsCache.clear();
+
     TestUtils.inAppTCDataToTCModel();
+
+    TestUtils.inAppTCDataToTCModel();
+
+    expect(CmpApiModel.restrictionsCache.getBucket(InAppTCData.name).recalculations).to.be.equal(1);
 
   });
 

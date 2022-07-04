@@ -64,7 +64,13 @@ describe('response->TCData', (): void => {
     CmpApiModel.tcModel = tcModel;
     CmpApiModel.tcString = TCString.encode(CmpApiModel.tcModel);
 
+    CmpApiModel.restrictionsCache.clear();
+
     TestUtils.tcModelToTCData();
+
+    TestUtils.tcModelToTCData();
+
+    expect(CmpApiModel.restrictionsCache.getBucket(TCData.name).recalculations).to.be.equal(1);
 
   });
 
