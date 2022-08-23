@@ -1,5 +1,3 @@
-export type RecalculationFunction<Type> = (...args) => Type;
-
 export class CacheBucket<Type> {
 
     public name: string;
