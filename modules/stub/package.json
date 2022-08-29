@@ -1,5 +1,5 @@
 {
-  "name": "@iabtcf/stub",
+  "name": "@didomi/iabtcf-stub",
   "version": "1.5.3",
   "description": "CMP API Stub code",
   "author": "Chris Paterson <tcf@chrispaterson.io>",
