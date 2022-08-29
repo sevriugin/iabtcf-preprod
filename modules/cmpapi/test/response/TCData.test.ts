@@ -68,4 +68,29 @@ describe('response->TCData', (): void => {
 
   });
 
+  it('should encode purpose restrictions came from cache', (): void => {
+
+    const tcModel = TCModelFactory.withGVL();
+    const vendorLength = tcModel.vendorConsents.size;
+
+    for (let i =1; i <= vendorLength; i++) {
+
+      tcModel.publisherRestrictions.add(i, new PurposeRestriction(makeRandomInt(1, 12), makeRandomInt(0, 2)));
+
+    }
+
+    CmpApiModel.gdprApplies = true;
+    CmpApiModel.tcModel = tcModel;
+    CmpApiModel.tcString = TCString.encode(CmpApiModel.tcModel);
+
+    CmpApiModel.restrictionsCache.clear();
+
+    TestUtils.tcModelToTCData();
+
+    TestUtils.tcModelToTCData();
+
+    expect(CmpApiModel.restrictionsCache.getBucket(TCData.name).recalculations).to.be.equal(1);
+
+  });
+
 });
