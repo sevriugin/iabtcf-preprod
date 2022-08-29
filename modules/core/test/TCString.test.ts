@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {TCString, TCModel} from '../src';
 import {Segment} from '../src/model';
-import {TCModelFactory} from '@iabtcf/testing';
+import {TCModelFactory} from '@didomi/iabtcf-testing';
 
 describe('TCString', (): void => {
 
@@ -148,7 +148,15 @@ describe('TCString', (): void => {
 
       if (!vendor || (value && vendor.legIntPurposes.length === 0)) {
 
-        expect(newModel.vendorLegitimateInterests.has(id), `vendorLegitimateInterests.has(${id})`).to.be.false;
+        if (vendor && vendor.purposes.length === 0 && vendor.specialPurposes.length > 0) {
+
+          expect(newModel.vendorLegitimateInterests.has(id), `vendorLegitimateInterests.has(${id})`).to.be.true;
+
+        } else {
+
+          expect(newModel.vendorLegitimateInterests.has(id), `vendorLegitimateInterests.has(${id})`).to.be.false;
+
+        }
 
       } else {
 

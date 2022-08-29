@@ -1,11 +1,13 @@
-import {Cloneable} from '../Cloneable';
+import {Cloneable} from '../Cloneable.js';
 
-type TreeNodeMaybe = TreeNode | null;
 interface TreeNode {
   value: number;
-  right: TreeNodeMaybe;
-  left: TreeNodeMaybe;
+  right: TreeNode | null;
+  left: TreeNode | null;
 }
+
+type TreeNodeMaybe = TreeNode | null;
+
 export class BinarySearchTree extends Cloneable<BinarySearchTree> {
 
   private root: TreeNodeMaybe = null;

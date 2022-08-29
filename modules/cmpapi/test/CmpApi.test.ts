@@ -7,11 +7,11 @@ import {Ping} from '../src/response/Ping';
 import {TCData} from '../src/response/TCData';
 import {TCFCommand} from '../src/command/TCFCommand';
 import {TestUtils} from './TestUtils';
-import {VendorList} from '@iabtcf/core';
+import {VendorList} from '@didomi/iabtcf-core';
 import {expect} from 'chai';
-import {makeRandomInt, makeRandomString, TCStringFactory} from '@iabtcf/testing';
+import {makeRandomInt, makeRandomString, TCStringFactory} from '@didomi/iabtcf-testing';
 
-import * as stub from '@iabtcf/stub';
+import * as stub from '@didomi/iabtcf-stub';
 
 const API_VERSION = 2;
 
@@ -46,6 +46,7 @@ describe('CmpApi', (): void => {
 
     const cmpId = makeRandomInt(2, 100);
     const cmpVersion = makeRandomInt(1, 15);
+
     return new CmpApi(cmpId, cmpVersion, isServiceSpecific, customCommands);
 
   };
@@ -53,6 +54,7 @@ describe('CmpApi', (): void => {
   beforeEach((): void => {
 
     stub.default();
+    CmpApiModel.reset();
 
   });
   afterEach((): void => {
@@ -450,7 +452,7 @@ describe('CmpApi', (): void => {
 
   });
 
-  it(`should set gdprApplies=false, displayStatus="${DisplayStatus.DISABLED}", eventStatus="${EventStatus.TC_LOADED}", and cmpStatus="${CmpStatus.LOADED}" when the tcString is set to null`, (): void => {
+  it(`should set gdprApplies=false, displayStatus="${DisplayStatus.DISABLED}", eventStatus="${EventStatus.TC_LOADED}", and cmpStatus="${CmpStatus.LOADED}" and return value for tcfPolicyVersion when the tcString is set to null`, (): void => {
 
     const cmpApi = getCmpApi();
 
@@ -460,6 +462,7 @@ describe('CmpApi', (): void => {
     expect(CmpApiModel.displayStatus, 'CmpApiModel.displayStatus').to.equal(DisplayStatus.DISABLED);
     expect(CmpApiModel.eventStatus, 'CmpApiModel.eventStatus').to.equal(EventStatus.TC_LOADED);
     expect(CmpApiModel.cmpStatus, 'CmpApiModel.cmpStatus').to.equal(CmpStatus.LOADED);
+    expect(CmpApiModel.tcfPolicyVersion, 'CmpApiModale.tcfPolicyVersion').to.exist;
 
   });
 

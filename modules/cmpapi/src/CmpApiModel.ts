@@ -1,6 +1,6 @@
 import {CmpStatus, DisplayStatus, EventStatus} from './status';
 import {EventListenerQueue} from './EventListenerQueue';
-import {TCModel} from '@iabtcf/core';
+import {TCModel} from '@didomi/iabtcf-core';
 import {Restrictions} from './response/Restrictions';
 import {Cache} from './Cache';
 

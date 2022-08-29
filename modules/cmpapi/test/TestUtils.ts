@@ -3,10 +3,10 @@ import {CmpApiModel} from '../src/CmpApiModel';
 import {CmpApi} from '../src/CmpApi';
 import {CustomCommands} from '../src/CustomCommands';
 import {InAppTCData} from '../src/response/InAppTCData';
-import {PurposeRestriction, TCString, Vector} from '@iabtcf/core';
+import {PurposeRestriction, TCString, Vector} from '@didomi/iabtcf-core';
 import {TCData} from '../src/response/TCData';
 import {expect} from 'chai';
-import {makeRandomInt} from '@iabtcf/testing';
+import {makeRandomInt} from '@didomi/iabtcf-testing';
 
 export class TestUtils {
 
@@ -20,6 +20,7 @@ export class TestUtils {
     );
 
   }
+
   private static checkVectorToBooleanVector(name: string,
                                             vector: Vector,
                                             boolVector: BooleanVector,
@@ -45,6 +46,7 @@ export class TestUtils {
     }
 
   }
+
   private static checkVectorToBitField(name: string,
                                        vector: Vector,
                                        str: string): void {
@@ -52,7 +54,7 @@ export class TestUtils {
     expect(str.length).to.equal(vector.maxId);
     vector.forEach((value: boolean, id: number): void => {
 
-      expect(str.charAt(id - 1), name+' id: ' + id ).to.equal(+value + '');
+      expect(str.charAt(id - 1), name+' id: ' + id ).to.equal(String(Number(value)));
 
     });
 
