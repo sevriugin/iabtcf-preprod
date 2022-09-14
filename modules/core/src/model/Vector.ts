@@ -28,6 +28,20 @@ export class Vector extends Cloneable<Vector> implements Iterable<IdBoolTuple> {
 
   }
 
+  public toArray(): Array<IdBoolTuple> {
+
+    const result = new Array<IdBoolTuple>(0);
+
+    for (let i = 1; i <= this.maxId; i++) {
+
+      result.push([i, this.has(i)] as IdBoolTuple);
+
+    }
+
+    return result;
+
+  }
+
   /**
    * values()
    *

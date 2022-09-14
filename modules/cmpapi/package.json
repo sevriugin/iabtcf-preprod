@@ -64,7 +64,8 @@
     "lib"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "@didomi:registry": "https://registry.npmjs.org/"
   },
   "keywords": [
     "interactive",
