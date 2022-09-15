@@ -28,6 +28,12 @@ export class Vector extends Cloneable<Vector> implements Iterable<IdBoolTuple> {
 
   }
 
+  /**
+   * toArray()
+   *
+   * @return {Array<IdBoolTuple>} returns an array of all values in the set
+   *
+   */
   public toArray(): Array<IdBoolTuple> {
 
     const result = new Array<IdBoolTuple>(0);

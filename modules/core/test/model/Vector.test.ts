@@ -123,6 +123,33 @@ export function run(): void {
 
     });
 
+    it('toArray - construct array with id/bool tuples', (): void => {
+
+      const idAr: number[] = [1, 3, 5, 7, 9, 12, 15];
+      const vector: Vector = new Vector();
+
+      vector.set(idAr);
+
+      expect(vector.toArray()).to.deep.equal([
+        [1, true],
+        [2, false],
+        [3, true],
+        [4, false],
+        [5, true],
+        [6, false],
+        [7, true],
+        [8, false],
+        [9, true],
+        [10, false],
+        [11, false],
+        [12, true],
+        [13, false],
+        [14, false],
+        [15, true],
+      ]);
+
+    });
+
   });
 
 }
